@@ -10,3 +10,20 @@
     win.addEventListener(resizeEvt, recalc, false);
     doc.addEventListener('DOMContentLoaded', recalc, false);
 })(document, window);
+$(function () {
+    //直播秀点赞
+    $('.zan').on('click',function(){
+        var $this = $(this);
+        $this.hasClass('act') ? '' : $this.addClass('act');
+    });
+
+    //显示下滑引导箭头
+    $(window).on('scroll',function(){
+        if($(window).scrollTop()>=$(document).height()-$(window).height()){
+           $('.arrow').hide();
+        }else{
+            $('.arrow').show();
+        }
+    });
+
+});
