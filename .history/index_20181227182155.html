@@ -8,8 +8,8 @@
     <title>美味食谱</title>
     <link rel="stylesheet" href="css/reset.min.css">
     <link rel="stylesheet" href="css/swiper.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- <script src="js/less-1.7.0.min.js"></script> -->
+    <link rel="stylesheet/less" href="css/styles.less">
+    <script src="js/less-1.7.0.min.js"></script>
 </head>
 <body>
     <section class="wrap">
@@ -45,34 +45,35 @@
 <script src="js/swiper.min.js"></script>
 <script src="js/index.js"></script>
 <script>
-    window.onload = function () {
-        var mySwiper = new Swiper('.swiper-container', {
-            loop: true,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
+    var mySwiper = new Swiper('.swiper-container', {
+        loop: true,
+        slidesPerView:1,
+        spaceBetween: 20,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        on:{
+            slideChange: function(){
+                var $dishes = $('#dishes');
+                switch(this.realIndex){
+                    case 0:
+                    $dishes.text('炉烤培根芝士鸡肉卷');
+                    break;
+                    case 1:
+                    $dishes.text('惠灵顿牛排');
+                    break;
+                    case 2:
+                    $dishes.text('果干香蕉牛奶');
+                    break;
+                    case 3:
+                    $dishes.text('厚片菲力牛排');
+                    break;
+                }
             },
-            on: {
-                slideChange: function () {
-                    var $dishes = $('#dishes');
-                    switch (this.realIndex) {
-                        case 0:
-                            $dishes.text('炉烤培根芝士鸡肉卷');
-                            break;
-                        case 1:
-                            $dishes.text('惠灵顿牛排');
-                            break;
-                        case 2:
-                            $dishes.text('果干香蕉牛奶');
-                            break;
-                        case 3:
-                            $dishes.text('厚片菲力牛排');
-                            break;
-                    }
-                },
-            },
-        });
-        $('.box').on('click', function () {
+        },
+    });
+    $('.box').on('click', function () {
             var text = $('#dishes').text();
             switch (text) {
                 case '炉烤培根芝士鸡肉卷':
@@ -89,5 +90,4 @@
                     break;
             }
         });
-    }
 </script>
